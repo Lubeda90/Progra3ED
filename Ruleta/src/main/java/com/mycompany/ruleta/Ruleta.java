@@ -13,15 +13,45 @@ package com.mycompany.ruleta;
 public class Ruleta {
 
     private int intNumAzar;
+    private String strColor;
     
 
     public Ruleta() {
-
+        this.intNumAzar = 0;
+        this.strColor = "";
     }
 
-    public int girarRuleta() {
-        int intNumAzar = (int) (Math.random() * 10) + 1; //Numero aleatorio entre 1 y 10
-        return intNumAzar;
+    public void girarRuleta() {
+        this.intNumAzar = (int) (Math.random() * 10) + 1; //Numero aleatorio entre 1 y 10
+        if ((this.intNumAzar % 2) == 0) { //Residuo de dividir en 2 es igual a 0 (indica que es par)
+            this.strColor = "Negro"; //negro par
+        } else {
+            this.strColor = "Blanco"; //blanco impar
+        }
+        System.out.println("La ruleta ha girado, el resultado fue Numero: " + this.intNumAzar + ", Color: " + this.strColor);
+        System.out.println("Veamos los resultados de la apuesta: ");
     }
+    
+    public void validarResultado(Jugador objJugador) {
+        if (objJugador.getStrTipoApuesta().equals("Numero")) {
+            if(objJugador.getIntNumeroSelec() == this.intNumAzar) {
+                System.out.println("Apostaste al numero: " + objJugador.getIntNumeroSelec());
+                System.out.println("Felicidades, has ganado 30 creditos!!!");
+                objJugador.recibirPremio("Numero");
+            }else {
+                System.out.println("Apostaste al numero: " + objJugador.getIntNumeroSelec());
+                 System.out.println("Lo sentimos, has perdido!!!");
+            }
+        } else {
+            if(objJugador.getStrColorSelec().equals(this.strColor)) {
+                System.out.println("Apostaste al color: " + objJugador.getStrColorSelec());
+                System.out.println("Felicidades, has ganado 20 creditos!!!");
+                objJugador.recibirPremio("Color");
+            }else{
+                System.out.println("Apostaste al color: " + objJugador.getStrColorSelec());
+                System.out.println("Lo sentimos, has perdido!!!");
+            }
+        }
+    }    
 
 }
