@@ -11,13 +11,13 @@ package com.mycompany.ruleta;
  */
 public class Jugador {
     
-    private int intBalance;
+    private int intBalance; //balance del jugador para apostar
     private int intNumeroSelec;
     private String strColorSelec;
     private String strTipoApuesta; //apuesta por color o por numero
 
     public Jugador() {
-        this.intBalance = 100;
+        this.intBalance = 100; //balance incial del jugador
         this.intNumeroSelec = 0;
         this.strColorSelec = "";
         this.strTipoApuesta = "";

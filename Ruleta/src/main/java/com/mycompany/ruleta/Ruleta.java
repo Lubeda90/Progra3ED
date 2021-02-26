@@ -12,8 +12,8 @@ package com.mycompany.ruleta;
  */
 public class Ruleta {
 
-    private int intNumAzar;
-    private String strColor;
+    private int intNumAzar; //Numero al girar la ruleta
+    private String strColor; //color del numero elegido
     
 
     public Ruleta() {
@@ -33,11 +33,11 @@ public class Ruleta {
     }
     
     public void validarResultado(Jugador objJugador) {
-        if (objJugador.getStrTipoApuesta().equals("Numero")) {
+        if (objJugador.getStrTipoApuesta().equals("Numero")) { //apostar por un numero
             if(objJugador.getIntNumeroSelec() == this.intNumAzar) {
                 System.out.println("Apostaste al numero: " + objJugador.getIntNumeroSelec());
                 System.out.println("Felicidades, has ganado 30 creditos!!!");
-                objJugador.recibirPremio("Numero");
+                objJugador.recibirPremio("Numero"); //abonar creditos a jugador
             }else {
                 System.out.println("Apostaste al numero: " + objJugador.getIntNumeroSelec());
                  System.out.println("Lo sentimos, has perdido!!!");
@@ -46,10 +46,10 @@ public class Ruleta {
             if(objJugador.getStrColorSelec().equals(this.strColor)) {
                 System.out.println("Apostaste al color: " + objJugador.getStrColorSelec());
                 System.out.println("Felicidades, has ganado 20 creditos!!!");
-                objJugador.recibirPremio("Color");
+                objJugador.recibirPremio("Color"); //abonar creditos a jugador
             }else{
                 System.out.println("Apostaste al color: " + objJugador.getStrColorSelec());
-                System.out.println("Lo sentimos, has perdido!!!");
+                System.out.println("Lo sentimos, has perdido!!!"); //no se abona ningun credito al jugador
             }
         }
     }    
