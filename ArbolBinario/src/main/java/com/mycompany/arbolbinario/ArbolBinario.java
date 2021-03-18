@@ -50,6 +50,20 @@ public class ArbolBinario {
         }else
             System.out.println("El nodo ya se encuentra en el arbol");
     }
+    
+    public static void eliminarHojasABB(Nodo APNodo) {
+        if ((APNodo.izquierdo != null) && (APNodo.derecho != null)) {
+            eliminarHojasABB(APNodo.izquierdo);
+            eliminarHojasABB(APNodo.derecho);
+        }else if ((APNodo.izquierdo != null) && (APNodo.derecho == null)) {
+            eliminarHojasABB(APNodo.izquierdo);
+        }else if ((APNodo.izquierdo == null) && (APNodo.derecho != null)) {
+            eliminarHojasABB(APNodo.derecho);
+        }else if ((APNodo.izquierdo == null) && (APNodo.derecho == null)){
+            System.out.println("Hoja Eliminada -- " + APNodo.getDato());
+            APNodo = null;
+        }
+    }
    
     public static void main(String[] args) {
         /*Nodo raiz = new Nodo(31);
@@ -102,17 +116,24 @@ public class ArbolBinario {
         System.out.println("");
         postOrden(raiz);*/
         
-        Nodo raiz = new Nodo(120);
+        Nodo raiz = new Nodo(62);
         
-        insercionABB(raiz,87);
-        insercionABB(raiz,43);
-        insercionABB(raiz,65);
-        insercionABB(raiz,140);
-        insercionABB(raiz,99);
-        insercionABB(raiz,130);
-        insercionABB(raiz,22);
-        insercionABB(raiz,56);
+        insercionABB(raiz,49);
+        insercionABB(raiz,78);
+        insercionABB(raiz,31);
+        insercionABB(raiz,55);
+        insercionABB(raiz,69);
+        insercionABB(raiz,90);
+        insercionABB(raiz,10);
+        insercionABB(raiz,37);
+        insercionABB(raiz,66);
+        insercionABB(raiz,96);
+        insercionABB(raiz,93);
         
         inOrden(raiz);
+        System.out.println("");
+        eliminarHojasABB(raiz);
+        System.out.println("");
+        preOrden(raiz);
     }   
 }
