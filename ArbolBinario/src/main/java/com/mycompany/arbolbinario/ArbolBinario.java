@@ -26,6 +26,22 @@ public class ArbolBinario {
         }
     }
     
+    public static void inOrdenNodosInternos(Nodo APNodo) { //recorrido inorden nodos internos
+        Nodo auxizq = APNodo.izquierdo;
+        Nodo auxder = APNodo.derecho;
+        if ((auxizq != null) && (auxder != null)){
+            inOrdenNodosInternos(APNodo.izquierdo);
+            System.out.print(APNodo.getDato() + "-->");
+            inOrdenNodosInternos(APNodo.derecho);
+        }else if ((auxizq != null) && (auxder == null)) {
+            inOrdenNodosInternos(APNodo.izquierdo);
+            System.out.print(APNodo.getDato() + "-->");
+        }else if ((auxizq == null) && (auxder != null)) {
+            System.out.print(APNodo.getDato() + "-->");
+            inOrdenNodosInternos(APNodo.derecho);
+        }
+    }
+    
     public static void postOrden(Nodo APNodo) { //recorrido postorden
         if (APNodo != null) {
             postOrden(APNodo.izquierdo);
@@ -52,16 +68,20 @@ public class ArbolBinario {
     }
     
     public static void eliminarHojasABB(Nodo APNodo) {
-        if ((APNodo.izquierdo != null) && (APNodo.derecho != null)) {
-            eliminarHojasABB(APNodo.izquierdo);
-            eliminarHojasABB(APNodo.derecho);
-        }else if ((APNodo.izquierdo != null) && (APNodo.derecho == null)) {
-            eliminarHojasABB(APNodo.izquierdo);
-        }else if ((APNodo.izquierdo == null) && (APNodo.derecho != null)) {
-            eliminarHojasABB(APNodo.derecho);
-        }else if ((APNodo.izquierdo == null) && (APNodo.derecho == null)){
-            System.out.println("Hoja Eliminada -- " + APNodo.getDato());
-            APNodo = null;
+        Nodo auxizq = APNodo.izquierdo;
+        Nodo auxder = APNodo.derecho;
+        if ((auxizq.izquierdo != null) || (auxizq.derecho != null)) {
+            eliminarHojasABB(auxizq);
+        }else if ((auxder.izquierdo != null) || (auxder.derecho != null)) {
+            eliminarHojasABB(auxder);
+        }
+        if ((auxizq.izquierdo == null) && (auxizq.derecho == null)){
+            //System.out.println("Hoja Eliminada -- " + APNodo.getDato());
+            APNodo.izquierdo = null;
+        }
+        if ((auxder.izquierdo == null) && (auxder.derecho == null)){
+            //System.out.println("Hoja Eliminada -- " + APNodo.getDato());
+            APNodo.derecho = null;
         }
     }
    
@@ -130,10 +150,12 @@ public class ArbolBinario {
         insercionABB(raiz,96);
         insercionABB(raiz,93);
         
+        //inOrdenNodosInternos(raiz);
+       // System.out.println("");
         inOrden(raiz);
         System.out.println("");
         eliminarHojasABB(raiz);
         System.out.println("");
-        preOrden(raiz);
+        inOrden(raiz);
     }   
-}
+};
